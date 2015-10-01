@@ -1,0 +1,22 @@
+{
+    "name": "tebru/stripe-sdk-bundle",
+    "description": "Bundle for the Stripe SDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nate Brunette",
+            "email": "n@tebru.net"
+        }
+    ],
+    "require": {
+        "symfony/symfony": "^2.3",
+        "tebru/stripe-sdk": "dev-master",
+        "tebru/retrofit-bundle": "^2.0",
+        "guzzlehttp/guzzle": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tebru\\StripeBundle\\": ""
+        }
+    }
+}

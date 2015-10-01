@@ -1,0 +1,38 @@
+parameters:
+    stripe.base_url: https://api.stripe.com/v1
+    stripe.charge_client.class: Tebru\Stripe\Client\ChargeClient
+    stripe.refund_client.class: Tebru\Stripe\Client\RefundClient
+    stripe.customer_client.class: Tebru\Stripe\Client\CustomerClient
+    stripe.card_client.class: Tebru\Stripe\Client\CardClient
+    stripe.account_client.class: Tebru\Stripe\Client\AccountClient
+
+services:
+    stripe.rest_adapter:
+        class: %tebru_retrofit.rest_adapter.class%
+        factory: [Tebru\StripeBundle\Factory\StripeRestAdapterFactory, make]
+        arguments: [%stripe.api_key%, %stripe.base_url%]
+
+    stripe:
+        class: Tebru\Stripe\Stripe
+        arguments: [@stripe.rest_adapter]
+
+    stripe.charge_client:
+        class: %stripe.charge_client.class%
+        tags:
+            - { name: tebru_retrofit.register }
+    stripe.refund_client:
+        class: %stripe.refund_client.class%
+        tags:
+            - { name: tebru_retrofit.register }
+    stripe.customer_client:
+        class: %stripe.customer_client.class%
+        tags:
+            - { name: tebru_retrofit.register }
+    stripe.card_client:
+        class: %stripe.card_client.class%
+        tags:
+            - { name: tebru_retrofit.register }
+    stripe.account_client:
+        class: %stripe.account_client.class%
+        tags:
+            - { name: tebru_retrofit.register }
