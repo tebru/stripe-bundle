@@ -27,15 +27,8 @@ class StripeRestAdapterFactory
         }
 
         if (null === $serializerBuilder) {
-            $serializerBuilder = new SerializerBuilder();
+            $serializerBuilder = SerializerBuilder::create();
         }
-
-        $serializerBuilder->addDefaultListeners();
-        $serializerBuilder->configureListeners(
-            function(EventDispatcher $dispatcher) {
-                $dispatcher->addSubscriber(new SourceSubscriber());
-            }
-        );
 
         $serializer = $serializerBuilder->build();
 
